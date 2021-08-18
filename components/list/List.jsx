@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, TextInput, Button } from "react-native";
+import { StyleSheet, View, ScrollView, FlatList } from "react-native";
 import { ListItem } from "../listitem/ListItem";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ClearButton } from "../clearbutton/ClearButton";
@@ -38,21 +38,25 @@ export const List = () => {
   }, [list]);
 
   return (
-    <View style={styles.list}>
+    <View style={styles.app}>
       <Input
         addItem={(input) => {
           setList([...list, { id: list.length + 1, name: input }]);
         }}
       />
-      {list.map((item, index) => (
-        <ListItem
-          key={index}
-          name={item.name}
-          onDelete={() => {
-            setList(list.filter((i) => i.id !== item.id));
-          }}
-        />
-      ))}
+      <FlatList
+        style={styles.list}
+        data={list}
+        renderItem={({ item }) => (
+          <ListItem
+            name={item.name}
+            onDelete={() => {
+              setList(list.filter((i) => i.id !== item.id));
+            }}
+          />
+        )}
+        keyExtractor={(item, index) => index.toString()}
+      />
 
       <ClearButton
         onPress={() => {
@@ -66,9 +70,15 @@ export const List = () => {
 };
 
 const styles = StyleSheet.create({
-  list: {
+  app: {
     display: "flex",
-    flexDirection: "column",
     justifyContent: "center",
+    paddingTop: 100,
+    backgroundColor: "#343434",
+    width: "100%",
+    height: "100%",
+  },
+  list: {
+    padding: 10,
   },
 });
