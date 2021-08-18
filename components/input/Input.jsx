@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     fontSize: 20,
-    width: "90%",
+    width: "88%",
     color: "#f2f2f2",
   },
   inputContainerFocus: {
