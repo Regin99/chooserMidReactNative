@@ -9,7 +9,7 @@ export const Input = ({ addItem }) => {
   const transitionIn = () =>
     Animated.timing(transitionAnim, {
       toValue: 1,
-      duration: 300,
+      duration: 400,
       useNativeDriver: true,
     }).start();
 
@@ -33,7 +33,7 @@ export const Input = ({ addItem }) => {
         {
           translateY: transitionAnim.interpolate({
             inputRange: [0, 1],
-            outputRange: ["0%", "290%"],
+            outputRange: ["0%", "210%"],
           }),
         },
       ],
@@ -74,15 +74,17 @@ export const Input = ({ addItem }) => {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginTop: 20,
     paddingLeft: 10,
+    paddingRight: 10,
     zIndex: 1,
   },
   textInput: {
     fontSize: 20,
+    width: "90%",
     color: "#f2f2f2",
   },
   inputContainerFocus: {

@@ -12,7 +12,8 @@ export const Random = ({ list }) => {
 
   return (
     <View style={styles.container}>
-      <Text>{random}</Text>
+      <Text style={styles.zagl}>РУССКАЯ ЗАГЛУШКА)</Text>
+      <Text style={styles.label}>{random}</Text>
       <Button title="Random" onPress={getRandom} />
     </View>
   );
@@ -24,5 +25,21 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginTop: 40,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  label: {
+    fontSize: 25,
+    fontWeight: "bold",
+    color: "#841584",
+    textAlign: "center",
+  },
+  zagl: {
+    fontSize: 7,
+    color: "#343434",
+  },
+  button: {
+    padding: 20,
   },
 });

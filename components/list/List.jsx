@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, ScrollView, FlatList } from "react-native";
+import { StyleSheet, View, FlatList, Text } from "react-native";
 import { ListItem } from "../listitem/ListItem";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ClearButton } from "../clearbutton/ClearButton";
@@ -39,7 +39,10 @@ export const List = () => {
 
   return (
     <View style={styles.app}>
+      <Text style={styles.label}>Mid Chooser</Text>
+      <Random list={list} />
       <Input
+        style={styles.input}
         addItem={(input) => {
           setList([...list, { id: list.length + 1, name: input }]);
         }}
@@ -64,7 +67,6 @@ export const List = () => {
           setList([]);
         }}
       />
-      <Random list={list} />
     </View>
   );
 };
@@ -73,12 +75,18 @@ const styles = StyleSheet.create({
   app: {
     display: "flex",
     justifyContent: "center",
-    paddingTop: 100,
+    paddingTop: 50,
     backgroundColor: "#343434",
     width: "100%",
     height: "100%",
   },
   list: {
     padding: 10,
+  },
+  label: {
+    fontSize: 30,
+    color: "#FFFFFF",
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });
