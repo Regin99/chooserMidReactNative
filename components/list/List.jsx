@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, FlatList, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  Text,
+  ScrollView,
+  KeyboardAvoidingView,
+} from "react-native";
 import { ListItem } from "../listitem/ListItem";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ClearButton } from "../clearbutton/ClearButton";
@@ -38,11 +45,10 @@ export const List = () => {
   }, [list]);
 
   return (
-    <View style={styles.app}>
+    <KeyboardAvoidingView style={styles.app}>
       <Text style={styles.label}>Mid Chooser</Text>
       <Random list={list} />
       <Input
-        style={styles.input}
         addItem={(input) => {
           setList([...list, { id: list.length + 1, name: input }]);
         }}
@@ -60,14 +66,14 @@ export const List = () => {
         )}
         keyExtractor={(item, index) => index.toString()}
       />
-
-      <ClearButton
-        onPress={() => {
-          AsyncStorage.clear();
-          setList([]);
-        }}
-      />
-    </View>
+      <KeyboardAvoidingView>
+        <ClearButton
+          onClear={() => {
+            setList([]);
+          }}
+        />
+      </KeyboardAvoidingView>
+    </KeyboardAvoidingView>
   );
 };
 

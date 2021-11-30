@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
-import { View, TextInput, Button, StyleSheet, Animated } from "react-native";
+import { TextInput, Button, StyleSheet, Animated } from "react-native";
 
 export const Input = ({ addItem }) => {
   const [input, setInput] = useState("");
-
+  const [styleArr, setStyleArr] = useState([styles.inputContainer]);
   const transitionAnim = useRef(new Animated.Value(0)).current;
 
   const transitionIn = () =>
@@ -25,15 +25,13 @@ export const Input = ({ addItem }) => {
     setInput("");
   };
 
-  const [styleArr, setStyleArr] = useState([styles.inputContainer]);
-
   const translate = StyleSheet.create({
     anim: {
       transform: [
         {
           translateY: transitionAnim.interpolate({
             inputRange: [0, 1],
-            outputRange: ["0%", "210%"],
+            outputRange: ["0%", "165%"],
           }),
         },
       ],
@@ -89,8 +87,9 @@ const styles = StyleSheet.create({
   },
   inputContainerFocus: {
     backgroundColor: "#434343",
-    height: "10%",
-    alignItems: "center",
+    height: "14%",
+    paddingTop: 10,
+    alignItems: "flex-start",
     zIndex: 1,
     borderTopWidth: 2,
     borderTopColor: "#006ee6",
