@@ -3,10 +3,18 @@ import { View, Text, StyleSheet, Button } from "react-native";
 
 export const Random = ({ list }) => {
   const [random, setRandom] = useState("Random");
+  const url = `https://www.random.org/integers/?num=1&min=1&max=${list.length}&col=1&base=10&format=plain&rnd=new`;
 
   const getRandom = () => {
     list.length > 0
-      ? setRandom(list[Math.floor(Math.random() * list.length)].name)
+      ? fetch(url)
+          .then((response) => response.text())
+          .then((response) => {
+            setRandom(list[response - 1].name);
+          })
+          .catch((error) => {
+            console.error(error);
+          })
       : setRandom("No data");
   };
 
